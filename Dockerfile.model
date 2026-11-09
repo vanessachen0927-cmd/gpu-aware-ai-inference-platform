@@ -1,0 +1,9 @@
+FROM python:3.11-slim
+WORKDIR /service
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 HF_HOME=/tmp/hf
+COPY pyproject.toml ./
+COPY app ./app
+RUN pip install --no-cache-dir '.[model]'
+RUN useradd -r -u 10001 runner
+USER runner
+CMD ["python", "-m", "app.worker"]

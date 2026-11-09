@@ -1,0 +1,5 @@
+apiVersion: v2
+name: gpu-inference
+version: 0.1.0
+appVersion: "0.1.0"
+description: Queue-driven inference API and GPU-capable workers

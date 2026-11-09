@@ -1,0 +1,9 @@
+services:
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.model
+    environment:
+      MODEL_BACKEND: transformers
+      MODEL_ID: sshleifer/tiny-gpt2
+      HF_HOME: /tmp/hf

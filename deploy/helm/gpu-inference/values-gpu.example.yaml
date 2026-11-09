@@ -1,0 +1,14 @@
+image:
+  repository: ghcr.io/your-user/gpu-inference-model
+  tag: "0.1.0"
+worker:
+  backend: transformers
+  modelId: sshleifer/tiny-gpt2
+  gpuCount: 1
+  resources:
+    requests:
+      cpu: "1"
+      memory: 2Gi
+    limits:
+      cpu: "2"
+      memory: 6Gi

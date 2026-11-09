@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-config
+data:
+  REDIS_URL: redis://{{ .Release.Name }}-redis:6379/0
+  MAX_QUEUE_DEPTH: {{ .Values.queue.maxDepth | quote }}
+  RESULT_TTL_SECONDS: {{ .Values.queue.resultTtlSeconds | quote }}
+  MODEL_BACKEND: {{ .Values.worker.backend | quote }}
+  MODEL_ID: {{ .Values.worker.modelId | quote }}

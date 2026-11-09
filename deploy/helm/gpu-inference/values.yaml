@@ -1,0 +1,38 @@
+image:
+  repository: gpu-inference
+  tag: "0.1.0"
+  pullPolicy: IfNotPresent
+api:
+  replicas: 2
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+worker:
+  replicas: 1
+  backend: mock
+  modelId: sshleifer/tiny-gpt2
+  gpuCount: 0
+  resources:
+    requests:
+      cpu: 250m
+      memory: 256Mi
+    limits:
+      cpu: "1"
+      memory: 1Gi
+redis:
+  image: redis:7-alpine
+  persistence: false
+queue:
+  maxDepth: 100
+  resultTtlSeconds: 3600
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 70
+serviceMonitor:
+  enabled: false
